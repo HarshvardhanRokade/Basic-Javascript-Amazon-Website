@@ -26,32 +26,31 @@ export function saveToStorage(){
 
 
 
-export function addToCart(productId){
-    let matchingItem;
+export function addToCart(productId) {
+  let matchingItem;
 
-      cart.forEach((cartItem) => {
-        if(productId === cartItem.productId){
-          matchingItem = cartItem;
-        }
-      });
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
 
-      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-      const quantity = quantitySelector ? Number(quantitySelector.value) : 1;
-      //const quantity = Number(quantitySelector.value);
+  const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+  const quantity = quantitySelector ? Number(quantitySelector.value) : 1;
 
-      if(matchingItem){
-        matchingItem.quantity += quantity;
-      }
-      else{
-          cart.push({
-          productId : productId,
-          quantity : 1 ,
-          deliveryOptionId : '1'
-        });
-      }
+  if (matchingItem) {
+    matchingItem.quantity += quantity;
+  } else {
+    cart.push({
+      productId: productId,
+      quantity: quantity, 
+      deliveryOptionId: '1'
+    });
+  }
 
-      saveToStorage();
+  saveToStorage();
 }
+
 
 
 
